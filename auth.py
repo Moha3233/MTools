@@ -1,11 +1,12 @@
 # auth.py
 import sqlite3
-from passlib.hash import bcrypt
+from passlib.hash import pbkdf2_sha256
 from pathlib import Path
 
 DB_NAME = "users.db"
 
 def init_user_db(db_path: str = DB_NAME):
+    """Create SQLite DB if not exists."""
     path = Path(db_path)
     conn = sqlite3.connect(str(path))
     cur = conn.cursor()
@@ -20,27 +21,38 @@ def init_user_db(db_path: str = DB_NAME):
     conn.close()
 
 def add_user(username: str, password: str, db_path: str = DB_NAME) -> bool:
+    """Add a new user with PBKDF2 hashing."""
     if not username or not password:
         return False
+
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
-    hashed = bcrypt.hash(password)
+
+    hashed = pbkdf2_sha256.hash(password)
+
     try:
-        cur.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, hashed))
+        cur.execute(
+            "INSERT INTO users (username, password) VALUES (?, ?)",
+            (username, hashed)
+        )
         conn.commit()
         success = True
     except sqlite3.IntegrityError:
         success = False
+
     conn.close()
     return success
 
 def validate_user(username: str, password: str, db_path: str = DB_NAME) -> bool:
+    """Validate username/password."""
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("SELECT password FROM users WHERE username=?", (username,))
     result = cur.fetchone()
     conn.close()
+
     if result:
         stored_hash = result[0]
-        return bcrypt.verify(password, stored_hash)
+        return pbkdf2_sha256.verify(password, stored_hash)
+
     return False
