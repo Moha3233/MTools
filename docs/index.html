@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BramhaVivek Labs | Interactive Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ---------- GLOBAL ---------- */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #0e0e0e;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        section {
+            padding: 80px 10%;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #00eaff, #007bff);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        /* ---------- NAVBAR ---------- */
+        nav {
+            width: 100%;
+            padding: 18px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0; left: 0;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 100;
+        }
+
+        .nav-links a {
+            margin-left: 28px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00eaff;
+        }
+
+        /* ---------- HERO SECTION ---------- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: radial-gradient(circle at top left, #003b56, #000);
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1.2;
+        }
+
+        .hero span {
+            background: linear-gradient(45deg, #00eaff, #007bff);
+            padding: 4px 12px;
+            border-radius: 10px;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        /* ---------- SECTION TITLE ---------- */
+        .section-title {
+            font-size: 35px;
+            margin-bottom: 45px;
+            text-align: center;
+        }
+
+        /* ---------- ABOUT SECTION ---------- */
+        .about {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about img {
+            width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px #00eaff;
+        }
+
+        .about .text {
+            font-size: 17px;
+            opacity: 0.9;
+        }
+
+        /* ---------- SKILLS ---------- */
+        .skills-container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .skill {
+            margin-bottom: 15px;
+        }
+
+        .skill-bar {
+            height: 10px;
+            border-radius: 10px;
+            background: #222;
+            overflow: hidden;
+        }
+
+        .level {
+            height: 10px;
+            background: linear-gradient(45deg, #00eaff, #007bff);
+            width: 0%;
+            transition: width 1.5s;
+        }
+
+        /* ---------- APP GALLERY ---------- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px #00eaff;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        .card a {
+            color: #00eaff;
+            text-decoration: none;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            opacity: 0.7;
+            background: #000;
+        }
+
+        /* ---------- SCROLL ANIMATIONS ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.9s;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <h2>BramhaVivek Labs</h2>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#apps">Apps</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="reveal">
+            <h1>Hello, I'm <span>Mohan G. Duratkar</span><br>Biochemist | Educator | Developer</h1>
+            <p class="subtitle">Building scientific tools, AI apps, and life-science platforms.</p>
+            <br>
+            <a href="#apps"><button class="btn">Explore My Projects</button></a>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+        <h2 class="section-title">About Me</h2>
+        <div class="about">
+            <img src="https://images.unsplash.com/photo-1534982841079-afde227ada8f" alt="profile">
+            <div>
+                <p class="text">
+                    I am a Biochemist, Molecular Biologist, MH-SET educator, and a developer working on AI-powered
+                    biological tools, CADD workflows, research-automation apps, and life-science learning platforms.
+                    My work includes biomolecule extraction, virtual screening, biopolymer research, and ML in biology.
+                </p>
+                <br>
+                <button class="btn" onclick="window.open('https://moha3233.github.io/Portfolio/')">View Portfolio</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+        <h2 class="section-title">Skills</h2>
+
+        <div class="skills-container">
+            <div class="skill">
+                Python & Streamlit
+                <div class="skill-bar"><div class="level" data-level="95%"></div></div>
+            </div>
+            <div class="skill">
+                Bioinformatics & CADD
+                <div class="skill-bar"><div class="level" data-level="90%"></div></div>
+            </div>
+            <div class="skill">
+                Machine Learning
+                <div class="skill-bar"><div class="level" data-level="85%"></div></div>
+            </div>
+            <div class="skill">
+                SQL & Data Analytics
+                <div class="skill-bar"><div class="level" data-level="80%"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPS -->
+    <section id="apps" class="reveal">
+        <h2 class="section-title">My Interactive Apps</h2>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Life Science Exam Platform</h3>
+                <p>Notes, tools, PYQs, mind maps.</p>
+                <a href="#">Open App →</a>
+            </div>
+
+            <div class="card">
+                <h3>CADD Automation Tool</h3>
+                <p>SMILES → Docking → ADMET → CSV export.</p>
+                <a href="#">Launch →</a>
+            </div>
+
+            <div class="card">
+                <h3>PDF Research Extractor</h3>
+                <p>Extract metadata, summarize, generate notes.</p>
+                <a href="#">Try Now →</a>
+            </div>
+
+            <div class="card">
+                <h3>Lab Assistant App</h3>
+                <p>Inventory, calendar, protocol generator.</p>
+                <a href="#">Explore →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+        <h2 class="section-title">Contact</h2>
+        <p style="text-align:center;">
+            Email: <b>mohangduratkar@gmail.com</b><br><br>
+            <button class="btn" onclick="window.open('https://github.com/moha3233')">GitHub</button>
+            <button class="btn" onclick="window.open('mailto:mohangduratkar@gmail.com')">Email Me</button>
+        </p>
+    </section>
+
+    <footer>
+        © 2025 BramhaVivek Labs — Built with ❤️ using HTML, CSS, and JS
+    </footer>
+
+    <!-- SCROLL REVEAL -->
+    <script>
+        function reveal() {
+            document.querySelectorAll(".reveal").forEach(el => {
+                let windowHeight = window.innerHeight;
+                let elementTop = el.getBoundingClientRect().top;
+                let revealPoint = 150;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // Animate skill bars on scroll
+        function animateSkills() {
+            let bars = document.querySelectorAll(".level");
+            bars.forEach(bar => {
+                let target = bar.getAttribute("data-level");
+                bar.style.width = target;
+            });
+        }
+        window.onload = animateSkills;
+    </script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
