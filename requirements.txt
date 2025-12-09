@@ -3,4 +3,4 @@ pandas
 networkx
 matplotlib
 openpyxl
-passlib[bcrypt]
+passlib
