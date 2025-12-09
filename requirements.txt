@@ -1,0 +1,6 @@
+streamlit==1.26.0
+pandas
+networkx
+matplotlib
+openpyxl
+bcrypt
